@@ -22,6 +22,7 @@ from sqlalchemy.orm import relationship, sessionmaker
 
 Base = declarative_base()
 
+
 user_news_association_table = Table(
     "user_news_upvotes",
     Base.metadata,
@@ -189,8 +190,8 @@ def get_new(is_initial=False):
     :return:
     """
     news_data = get_new_info("價格", is_initial=is_initial)
-    title = news_data["title"]
     for news in news_data:
+        title = news["title"]
         m = [
             {
                 "role": "system",
@@ -198,7 +199,6 @@ def get_new(is_initial=False):
             },
             {"role": "user", "content": f"{title}"},
         ]
-
         ai = OpenAI(api_key="xxx").chat.completions.create(
             model="gpt-3.5-turbo",
             messages=m,
