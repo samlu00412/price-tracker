@@ -13,7 +13,7 @@ from unittest.mock import Mock
 
 SECRET_KEY = "1892dhianiandowqd0n"
 ALGORITHM = "HS256"
-SQLALCHEMY_DATABASE_URL = "sqlite:///:memory:"
+SQLALCHEMY_DATABASE_URL = "sqlite:///./test.db"
 engine = create_engine(SQLALCHEMY_DATABASE_URL, connect_args={"check_same_thread": False}, poolclass=StaticPool)
 TestingSessionLocal = sessionmaker(autocommit=False, autoflush=False, bind=engine)
 Base.metadata.create_all(bind=engine)
@@ -30,9 +30,14 @@ def override_session_opener():
 app.dependency_overrides[session_opener] = override_session_opener
 client = TestClient(app)
 
+@pytest.fixture(scope="module")
+def clear_users():
+    with next(override_session_opener()) as db:
+        db.query(User).delete()
+        db.commit()
 
 @pytest.fixture(scope="module")
-def test_user():
+def test_user(clear_users):
     hashed_password = pwd_context.hash("testpassword")
 
     with next(override_session_opener()) as db:
