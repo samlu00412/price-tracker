@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>價格追蹤小幫手</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <!-- 導覽列 -->
+    <nav class="navbar">
+        <!-- 導覽列標題 -->
+        <div class="logo">價格追蹤小幫手</div>
+
+        <!-- 導覽選項 -->
+        <div class="nav-links">
+            <a href="#">物價導覽</a>
+            <a href="#">物價趨勢</a>
+            <a href="#">相關新聞</a>
+            <a href="#">登入</a>
+        </div>
+
+        <!-- 漢堡按鈕 -->
+        <div class="hamburger" onclick="toggleMenu()">&#9776;</div>
+    </nav>
+
+    <script>
+        // 切換選單顯示與隱藏
+        function toggleMenu() {
+            const navbar = document.querySelector('.navbar');
+            navbar.classList.toggle('active');
+        }
+    </script>
+
+</body>
+</html>
