@@ -1,7 +1,7 @@
 <template>
     <nav class="navbar">
         <div class="title"> <RouterLink to="/overview">價格追蹤小幫手</RouterLink></div>
-        <ul class="options" v-if="show">
+        <ul class="options" v-if="show||widescreen">
             <li><RouterLink to="/overview">物價概覽</RouterLink></li>
             <li><RouterLink to="/trending">物價趨勢</RouterLink></li>
             <li><RouterLink to="/news">相關新聞</RouterLink></li>
@@ -9,7 +9,7 @@
             <li v-else @click="logout">Hi, {{getUserName}}! 登出</li>
         </ul>
 
-        <button class="hamburger" @click="hide">&#9776;</button>
+        <button class="hamburger" @click="hide()">&#9776;</button>
     </nav>
     
     
@@ -22,7 +22,8 @@ export default {
     name: 'NavBar',
     data() {
         return {
-            show: true
+            show: true,
+            widescreen: window.innerWidth > 768,
         }
     },
     computed: {
@@ -42,7 +43,19 @@ export default {
         },
         hide(){
             this.show = !this.show
-        }
+        },
+        handleResize() {
+            this.widescreen = window.innerWidth > 768;
+            if (this.widescreen) {
+                this.show = false; // 在寬螢幕下隱藏漢堡選單
+            }
+        },
+    },
+    mounted() {
+        window.addEventListener('resize', this.handleResize);
+    },
+    beforeUnmount() {
+        window.removeEventListener('resize', this.handleResize);
     }
 };
 </script>
