@@ -93,10 +93,10 @@ export default {
     width: 100%;
 }
 
-
 .selects {
     display: flex;
     justify-content: flex-start;
+    flex-wrap: wrap;
 }
 
 .selects>select {
@@ -114,5 +114,46 @@ export default {
     flex: 1 1 50%;
     box-sizing: border-box;
     padding: 1em;
+}
+
+@media (max-width: 768px) {
+    .wrapper {
+    padding: 0.5em;
+    background: #f3f3f3;
+    min-height: calc(100vh - 4.5em);
+    height: calc(100% - 4.5em);
+    box-sizing: border-box;
+    width: 100%;
+    }
+    .selects {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    .selects > select {
+        width: 100%; /* Full width on small screens */
+        margin-bottom: 1em;
+    }
+
+    .visualize {
+        flex-direction: column;
+    }
+
+    .trending-table {
+        display: block;
+        width: 100%;
+        overflow-x: scroll;
+        font-size: x-small;
+    }
+
+    .trending-table table {
+        font-size: xx-small;
+        display: block;
+        width: 100%;
+        overflow-x:auto; /* Ensure horizontal scrolling for very small screens */
+    }
+    .trending-table th, .trending-table td {
+        white-space: normal; /* Allow text wrapping on smaller screens */
+    }
 }
 </style>

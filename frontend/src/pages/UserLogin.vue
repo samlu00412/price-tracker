@@ -111,4 +111,15 @@ form > input{
 #login:hover{
     background-color: #46b8da;
 }
+
+@media(max-width:768px){
+    .ops > button{
+    padding: .5em 1em;
+    margin: 0.5em;
+    font-size: 0.9em;
+    border: none;
+    border-radius: .5em;
+    cursor: pointer;
+    }
+}
 </style>

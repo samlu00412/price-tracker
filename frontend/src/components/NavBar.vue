@@ -22,7 +22,7 @@ export default {
     name: 'NavBar',
     data() {
         return {
-            show: true,
+            show: false,
             widescreen: window.innerWidth > 768,
         }
     },

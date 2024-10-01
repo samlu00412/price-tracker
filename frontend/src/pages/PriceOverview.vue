@@ -64,6 +64,7 @@ export default {
 }
 .prices{
     display: flex;
+    /*flex-direction: column;*/
     justify-content: space-around;
     flex-wrap: wrap;
 }
@@ -71,8 +72,35 @@ export default {
     margin: 1em;
     flex-grow: 1;
 }
+.category table{
+    font-size:medium;
+}
 .subtitle{
     font-weight: normal;
     margin-top: .5em;
+}
+@media(max-width:768px){
+    .h1{
+        text-align: center;
+    }
+    .wrapper{
+        padding: .65em 1.3em;
+    }
+    .prices{
+        display: flex;
+        justify-content: space-around;
+        flex-wrap: wrap;
+    }
+    .category{
+        margin: 1em;
+        flex-grow: 1;
+    }
+    .subtitle{
+        font-weight: normal;
+        margin-top: .5em;
+    }
+    .category table{
+    font-size:small;
+    }
 }
 </style>
