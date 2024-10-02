@@ -2,9 +2,13 @@
     <nav class="navbar">
         <div class="title"> <RouterLink to="/overview">價格追蹤小幫手</RouterLink></div>
         <ul class="options" v-if="show||widescreen">
+            <div class="divider"></div>
             <li><RouterLink to="/overview">物價概覽</RouterLink></li>
+            <div class="divider"></div>
             <li><RouterLink to="/trending">物價趨勢</RouterLink></li>
+            <div class="divider"></div>
             <li><RouterLink to="/news">相關新聞</RouterLink></li>
+            <div class="divider"></div>
             <li v-if="!isLoggedIn"><RouterLink to="/login">登入</RouterLink></li>
             <li v-else @click="logout">Hi, {{getUserName}}! 登出</li>
         </ul>
@@ -72,6 +76,9 @@ export default {
     box-shadow: 0 0 5px #000000;
 }
 
+.divider{
+    display: none;
+}
 .navbar ul {
     list-style: none;
     display: flex;
@@ -111,51 +118,53 @@ export default {
 
 @media (max-width: 768px) {
     .navbar {
-    display: flex;
-    justify-content: space-between;
-    background-color: #f3f3f3;
-    padding: 1.5em;
-    height: 4.5em;
-    width: 100%;
-    align-items: center;
-    box-shadow: 0 0 5px #000000;
-}
+        display: flex;
+        justify-content: space-between;
+        background-color: #f3f3f3;
+        padding: 1.5em;
+        height: 4.5em;
+        width: 100%;
+        align-items: center;
+        box-shadow: 0 0 5px #000000;
+    }
 
-.navbar ul {
-    position: fixed;
+    .divider {
+        display: block;
+        border: .2em solid #f3f3f3;
+        width: 100%; /* 控制分隔線的寬度 */
+        border-top: 1px solid rgba(175, 175, 175, 0.5); /* 半透明灰色線 */
+    }
+    .navbar ul {
+        position: fixed;
         top: 72px;
         left: 0;
-        list-style: none;
         display: flex;
         flex-direction: column;
         align-items: center;
         width: 100%;
-        justify-content: center;
         background-color: #f3f3f3;
-}
+    }
 
-.title > a{
-    font-size: 1.4em;
-    font-weight: bold;
-    color: #2c3e50 !important;
-}
+    .title > a{
+        font-size: 1.4em;
+        font-weight: bold;
+        color: #2c3e50 !important;
+    }
 
-.navbar li {
-    color: #575B5D;
-    margin: 0 .5em;
-    font-size: 1.2em;
-}
+    .navbar li {
+        font-size: 1.1em;
+    }
 
-.navbar li:hover{
-    cursor: pointer;
-    font-weight: bold;
-}
+    .navbar li:hover{
+        cursor: pointer;
+        font-weight: bold;
+    }
 
-.navbar a {
-    text-decoration: none;
-    color: #575B5D;
-}
-.hamburger {
+    .navbar a {
+        text-decoration: none;
+        color: #575B5D;
+    }
+    .hamburger {
         display: block;
     }
 }
